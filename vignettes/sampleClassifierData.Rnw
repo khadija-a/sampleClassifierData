@@ -1,0 +1,87 @@
+%\VignetteIndexEntry{sampleClassifierData Introduction}
+%\VignettePackage{sampleClassifierData}
+%\VignetteEngine{utils::Sweave}
+
+\documentclass{article}
+
+<<style, eval=TRUE, echo=FALSE, results=tex>>=
+BiocStyle::latex()
+@ 
+
+\newcommand{\exitem}[3]{%
+  \item \texttt{\textbackslash#1\{#2\}} #3 \csname#1\endcsname{#2}.%
+}
+
+\title{Introduction to the \Biocpkg{sampleClassifierData} Package}
+\author{Khadija El Amrani}
+\usepackage{hyperref}
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+%---------------------------------------------------------
+\section{Introduction}
+%---------------------------------------------------------
+
+\Biocpkg{sampleClassifierData} contains a collection of publicly available microarray and RNA-seq datasets that have been pre-processed for use with the \Biocpkg{sampleClassifier} package. These pre-processed datasets can be used as reference matrices for gene expression profile classifcation using \Biocpkg{sampleClassifier}. This introduction contains a brief overview of the datasets included in the package. For more examples on how to use \Biocpkg{sampleClassifier} and \Biocpkg{sampleClassifierData}, please refer to the \Biocpkg{sampleClassifier} Vignette.
+
+%---------------------------------------------------------
+\section{Data overview}
+%---------------------------------------------------------
+
+First, we load the package \Biocpkg{sampleClassifierData}:
+
+<<>>=
+library(sampleClassifierData)
+@
+
+The \Biocpkg{sampleClassifierData} package contains two microarray datasets and two RNA-seq datasets that have been pre-processed for use with \Biocpkg{sampleClassifier}.
+
+The datasets are stored as \Robject{SummarizedExperiment} objects. The numeric matrices to use with the \Biocpkg{sampleClassifier} can be extracted using the \Rfunction{assay()} function from \Rpackage{SummarizedExperiment} package.\\
+The object \Robject{$se\_rnaseq\_refmat$} contains pre-processed RNA-seq data from the study E-MTAB-1733 \cite{Fagerberg2014a}. The data are available from the ArrayExpress \cite{Brazma2003} (\url{http://www.ebi.ac.uk/arrayexpress/}) database. The provided dataset contains gene expression profiles from 24 tissue types. Each tissue is represented by 3 replicates, except ovary which is represented by 2 replicates.\\
+To download and load this dataset, run the following code:
+<<>>=
+data("se_rnaseq_refmat")
+rnaseq_refmat <- assay(se_rnaseq_refmat)
+dim(rnaseq_refmat)
+@
+
+The object \Robject{$se\_micro\_refmat$} contains normalized microarray data from the study GSE3526 \cite{Roth2006a}. The dataset is available from GEO \cite{Barrett2007a} (\url{https://www.ncbi.nlm.nih.gov/geo/}). The provided dataset contains gene expression profiles from 26 tissues. Each tissue is represented by 3 replicates.
+To download and load this dataset, run the following code:
+<<>>=
+data("se_micro_refmat")
+micro_refmat <- assay(se_micro_refmat)
+dim(micro_refmat)
+@
+
+The object \Robject{$se\_rnaseq\_testmat$} contains pre-processed RNA-seq data derived from the study E-MTAB-513 \cite{Illumina}. The data are available from the ArrayExpress (\url{http://www.ebi.ac.uk/arrayexpress/}) database. The provided dataset contains gene expression profiles from 12 tissues.
+To download and load this dataset, run the following code:
+<<>>=
+data("se_rnaseq_testmat")
+rnaseq_testmat <- assay(se_rnaseq_testmat)
+dim(rnaseq_testmat)
+@
+
+
+The object \Robject{$se\_micro\_testmat$} contains normalized microarray data derived from the study GSE2361 \cite{Ge2005a}. The dataset is available from GEO. The provided dataset contains gene expression profiles from 16 tissues. 
+To download and load this dataset, run the following code:
+<<>>=
+data("se_micro_testmat")
+micro_testmat <- assay(se_micro_testmat)
+dim(micro_refmat)
+@
+
+
+%---------------------------------------------------------
+\section{Data pre-processing}
+%---------------------------------------------------------
+The reads from the studies E-MTAB-1733 and E-MTAB-513 were mapped to the GRCh37 version of the human genome with Tophat v2.1.0 \cite{Trapnell2009}. FPKM (fragments per kilobase of exon model per million mapped reads) values were calculated using cuffnorm v2.2.1 \cite{Trapnell2010a}. The used data from E-MTAB-1733 were extracted after processing of all samples and averaging across technical replicates.\\
+The microarray data from the studies GSE3526 and GSE2361 were normalized using YuGene \cite{Cao2014}.
+
+\bibliography{references}
+
+\end{document}
+

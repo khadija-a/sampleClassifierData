@@ -1,0 +1,18 @@
+Package: sampleClassifierData
+Type: Package
+Title: Pre-processed data for use with the sampleClassifier package
+Version: 0.99.0
+Date:  2017-01-09
+Author: Khadija El Amrani
+Maintainer: Khadija El Amrani <khadija.el-amrani@charite.de>
+Description: This package contains two microarray and two RNA-seq datasets 
+             that have been preprocessed for use with the sampleClassifier package.
+             The RNA-seq data are derived from Fagerberg et al. (2014) and  
+             the Illumina Body Map 2.0 data.
+             The microarray data are derived from Roth et al. (2006) and
+             Ge et al. (2005).
+License: Artistic-2.0
+Depends: R (>= 3.3.2), SummarizedExperiment
+Suggests: BiocStyle
+biocViews: ExperimentData, ExpressionData, MicroarrayData, SequencingData, RNASeqData, ArrayExpress
+NeedsCompilation: no
