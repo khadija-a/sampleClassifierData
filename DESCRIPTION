@@ -1,7 +1,7 @@
 Package: sampleClassifierData
 Type: Package
 Title: Pre-processed data for use with the sampleClassifier package
-Version: 0.99.1
+Version: 0.99.2
 Date:  2017-01-23
 Author: Khadija El Amrani
 Maintainer: Khadija El Amrani <khadija.el-amrani@charite.de>
